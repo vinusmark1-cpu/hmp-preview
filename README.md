@@ -1,2 +1,5 @@
 # hmp-preview
-Temporary seed preview for home management platform
+
+Open: https://vinusmark1-cpu.github.io/hmp-preview/
+
+Customer: /customer/
