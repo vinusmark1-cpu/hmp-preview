@@ -1,21 +1,29 @@
 <!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>HMP 시드</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#0F766E"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="집관리"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon.svg"/>
+<title>집 관리</title>
 <link rel="stylesheet" href="customer/styles.css"/>
 </head>
 <body>
 <header>
-  <h1>집 관리 시드</h1>
-  <p class="muted">화면 전부. 같은 브라우저.</p>
+  <h1>집 관리</h1>
+  <p class="muted">아이폰: 공유 → 홈 화면에 추가</p>
 </header>
+<div class="card"><b>앱처럼 보기</b>
+<p class="muted">Safari로 이 페이지를 열고 아래 공유(네모 상자) → <b>홈 화면에 추가</b>. 아이콘 누르면 새우 없이 열립니다.</p></div>
 <div class="card"><b>고객</b>
 <p class="muted"><a href="customer/">홈</a> · <a href="customer/plan.html">도면</a> · <a href="customer/self.html">할일</a> · <a href="customer/helper.html">헬퍼</a><br>
-<a href="customer/request.html">요청</a> · <a href="customer/new.html">새 요청</a> · <a href="customer/quote.html">견적</a><br>
-<a href="customer/me.html">내정보</a> · <a href="customer/complain.html">민원</a></p></div>
+<a href="customer/request.html">요청</a> · <a href="customer/new.html">새 요청</a> · <a href="customer/me.html">내정보</a></p></div>
 <div class="card"><b>파트너</b>
-<p class="muted"><a href="partner/">오늘</a> · <a href="partner/visit.html">방문</a> · <a href="partner/quote.html">견적</a> · <a href="partner/report.html">리포트</a></p></div>
+<p class="muted"><a href="partner/">오늘</a> · <a href="partner/visit.html">방문</a></p></div>
 <div class="card"><b>운영</b>
-<p class="muted"><a href="ops/">대시보드</a> · <a href="ops/assign.html">배정</a> · <a href="ops/support.html">지원</a> · <a href="ops/accounts.html">계정</a></p></div>
+<p class="muted"><a href="ops/">대시보드</a> · <a href="ops/assign.html">배정</a></p></div>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js')</script>
 </body></html>
