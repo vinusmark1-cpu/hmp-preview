@@ -1,0 +1,2 @@
+window.I18N={key:"hmp_lang",get(){return localStorage.getItem(this.key)||"ko"},set(v){localStorage.setItem(this.key,v);location.reload()},t:{ko:{home:"홈",plan:"도면",self:"할일",req:"요청",me:"내정보",lang:"English"},en:{home:"Home",plan:"Plan",self:"Tasks",req:"Requests",me:"Me",lang:"한국어"}}};
+document.addEventListener("DOMContentLoaded",()=>{const L=I18N.t[I18N.get()]||I18N.t.ko;document.querySelectorAll("[data-i]").forEach(el=>{const k=el.getAttribute("data-i");if(L[k])el.textContent=L[k]});});

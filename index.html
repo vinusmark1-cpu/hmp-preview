@@ -1,11 +1,21 @@
 <!doctype html>
-<html lang="ko"><meta charset="utf-8"/>
+<html lang="ko"><head>
+<meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>HMP 시드</title>
-<body style="font-family:system-ui;max-width:420px;margin:40px auto;padding:0 16px">
-<h1>집 관리 시드</h1>
-<p>같은 브라우저에서만 데이터가 이어집니다. PG 없음.</p>
-<p><a href="customer/">고객</a></p>
-<p><a href="partner/">파트너</a></p>
-<p><a href="ops/">운영</a></p>
+<link rel="stylesheet" href="customer/styles.css"/>
+</head>
+<body>
+<header>
+  <h1>집 관리 시드</h1>
+  <p class="muted">화면 전부. 같은 브라우저.</p>
+</header>
+<div class="card"><b>고객</b>
+<p class="muted"><a href="customer/">홈</a> · <a href="customer/plan.html">도면</a> · <a href="customer/self.html">할일</a> · <a href="customer/helper.html">헬퍼</a><br>
+<a href="customer/request.html">요청</a> · <a href="customer/new.html">새 요청</a> · <a href="customer/quote.html">견적</a><br>
+<a href="customer/me.html">내정보</a> · <a href="customer/complain.html">민원</a></p></div>
+<div class="card"><b>파트너</b>
+<p class="muted"><a href="partner/">오늘</a> · <a href="partner/visit.html">방문</a> · <a href="partner/quote.html">견적</a> · <a href="partner/report.html">리포트</a></p></div>
+<div class="card"><b>운영</b>
+<p class="muted"><a href="ops/">대시보드</a> · <a href="ops/assign.html">배정</a> · <a href="ops/support.html">지원</a> · <a href="ops/accounts.html">계정</a></p></div>
 </body></html>
