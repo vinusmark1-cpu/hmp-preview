@@ -1,1 +1,28 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>배정</title><link rel=stylesheet href=../customer/styles.css></head><body><header><h1>배정</h1><p class=muted>예약금 미납은 안 동작</p></header><div id=q></div><p class=muted style=margin:16px><a href=index.html>대시보드</a></p><script src=../flow.js></script><script>function draw(){const rows=HMP.queue();q.innerHTML=rows.length?rows.map(v=>`<div class=card>${v.unit} · ${v.trade}<p class=muted>예약금 ${v.deposit_paid?'납':'미납'}</p><button class=btn onclick="const m=HMP.assign('${v.id}');alert(m||'배정됨');draw()">배정</button></div>`).join(''):'<div class=card>큐 비움</div>'}draw()</script></body></html>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>배정</title><link rel=stylesheet href=../customer/styles.css></head><body><header><h1>배정</h1><p class=muted>예약금 미납은 배정할 수 없습니다</p></header><div id=q></div><p class=muted id=err hidden style="margin:0 16px"></p><p class=muted style=margin:16px><a href=index.html>대시보드</a></p><script src=../flow.js></script><script>
+const demo=new URLSearchParams(location.search).get('state');
+function draw(){
+  err.hidden=true;err.textContent='';
+  if(demo==='loading'){q.innerHTML='<div class=card role=status><p class=muted>불러오는 중</p></div>';return}
+  if(demo==='error'){q.innerHTML='<div class=card role=alert><b>불러오지 못함</b><p class=muted>다시 시도해 주세요.</p></div><a class="btn ghost" href=assign.html>다시 시도</a>';return}
+  const rows=demo==='empty'?[]:HMP.queue();
+  if(!rows.length){q.innerHTML='<div class=card>큐 비움</div>';return}
+  q.innerHTML=rows.map(v=>{
+    const locked=!v.deposit_paid;
+    return `<div class=card>${v.unit} · ${v.trade}<p class=muted>예약금 ${locked?'미납':'납'}</p><button class=btn type=button data-id="${v.id}" ${locked?'disabled':''}>배정</button></div>`;
+  }).join('');
+  q.querySelectorAll('button[data-id]').forEach(btn=>{btn.onclick=()=>run(btn)});
+}
+function run(btn){
+  if(btn.disabled)return;
+  const id=btn.getAttribute('data-id');
+  const v=HMP.load().visits[id];
+  if(!v||!v.deposit_paid)return;
+  btn.disabled=true;btn.textContent='배정 중';
+  setTimeout(()=>{
+    const m=HMP.assign(id);
+    if(m){btn.disabled=false;btn.textContent='배정';err.hidden=false;err.textContent=m;return}
+    draw();
+  },500);
+}
+draw();
+</script></body></html>
