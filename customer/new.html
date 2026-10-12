@@ -1,1 +1,17 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>새 요청</title><link rel=stylesheet href=styles.css></head><body><header><h1>새 요청</h1><p class=muted>가격 큰글 · 불가 범위</p></header><div id=list></div><nav class=tab><a href=index.html>홈</a><a href=plan.html>도면</a><a href=self.html>할일</a><a class=on href=request.html>요청</a><a href=me.html>내정보</a></nav><script src=../flow.js></script><script>list.innerHTML=HMP.load().catalog.map(c=>`<div class=card><b>${c.name}</b><div class=price>${c.needs_quote?'방문 후 견적':c.aed+' AED'}</div><p class=muted>예약금 ${c.deposit} AED</p><p class=muted>불가: ${c.exclude}</p><button class=btn onclick="HMP.createVisit('${c.id}');location='request.html'">이 서비스 요청</button></div>`).join('')</script></body></html>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>새 요청</title><link rel=stylesheet href=styles.css></head><body><header><h1>새 요청</h1><p class=muted>가격 큰글 · 불가 범위</p></header><div id=list></div><p class=muted id=hint style="margin:0 16px">서비스를 고르면 요청할 수 있습니다.</p><button class=btn id=go type=button disabled>이 서비스 요청</button><nav class=tab><a href=index.html>홈</a><a href=plan.html>도면</a><a href=self.html>할일</a><a class=on href=request.html>요청</a><a href=me.html>내정보</a></nav><script src=../flow.js></script><script>
+let pick=null;
+const cats=HMP.load().catalog;
+list.innerHTML=cats.map(c=>`<button type=button class="card pick" data-id="${c.id}" aria-pressed=false><b>${c.name}</b><div class=price>${c.needs_quote?'방문 후 견적':c.aed+' AED'}</div><p class=muted>예약금 ${c.deposit} AED</p><p class=muted>불가: ${c.exclude}</p></button>`).join('');
+function paint(){
+  list.querySelectorAll('.pick').forEach(el=>{
+    const on=el.dataset.id===pick;
+    el.classList.toggle('on',on);
+    el.setAttribute('aria-pressed',on?'true':'false');
+  });
+  go.disabled=!pick;
+  hint.textContent=pick?'선택한 서비스로 요청합니다.':'서비스를 고르면 요청할 수 있습니다.';
+}
+list.querySelectorAll('.pick').forEach(el=>{el.onclick=()=>{pick=el.dataset.id;paint()}});
+go.onclick=()=>{if(!pick||go.disabled)return;go.disabled=true;HMP.createVisit(pick);location='request.html'};
+paint();
+</script></body></html>
