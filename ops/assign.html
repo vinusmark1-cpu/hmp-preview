@@ -1,4 +1,4 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>배정</title><link rel=stylesheet href=../customer/styles.css></head><body><header><h1>배정</h1><p class=muted>예약금 미납은 배정할 수 없습니다</p></header><div id=q></div><p class=muted id=err hidden style="margin:0 16px"></p><p class=muted style=margin:16px><a href=index.html>대시보드</a></p><script src=../flow.js></script><script>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content=#0F766E><title>배정</title><link rel=stylesheet href=../customer/styles.css></head><body><header><h1>배정</h1><p class=muted>예약금 미납은 배정할 수 없습니다</p></header><div id=q></div><p class=muted id=err hidden style="margin:0 16px"></p><p class=muted style=margin:16px><a href=index.html>대시보드</a></p><script src=../flow.js></script><script>
 const demo=new URLSearchParams(location.search).get('state');
 function draw(){
   err.hidden=true;err.textContent='';
